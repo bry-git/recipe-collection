@@ -38,6 +38,7 @@ describe("Home page", () => {
     //setup
     const recipeName = ['Tofu Scramble Tacos', 'Cup Noodles'];
     cy.findByRole('button').click()
+  
     cy.findByRole('textbox', { name: /Recipe name/i }).type(recipeName[0])
     cy.findByRole('textbox', { name: /instructions/i }).clear()
     cy.findByRole('textbox', { name: /instructions/i }).type("1. heat a skillet on medium with a dollop of coconut oil {enter} 2. warm flour tortillas")
@@ -47,7 +48,6 @@ describe("Home page", () => {
     expect(cy.findByRole('listitem', /tofu scramble tacos/i)).toExist() 
 
     //setup 2
-    cy.findByRole('button').click()
     cy.findByRole('textbox', { name: /Recipe name/i }).clear()
     cy.findByRole('textbox', { name: /Recipe name/i }).type(recipeName[1])
     cy.findByRole('textbox', { name: /instructions/i }).clear()
