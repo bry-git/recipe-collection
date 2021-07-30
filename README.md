@@ -68,3 +68,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+New Requirements:
+
+User Stories
+MVP continued
+
+*As Chef Boyardee, I want to see all of the recipes I’ve come up with so that I don’t forget them
+ [ ] Given I am on the home page
+ [ ] When I add multiple recipes
+ [ ] Then I see all of them displayed below the ‘My Recipes’ heading

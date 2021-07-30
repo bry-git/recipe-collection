@@ -1,6 +1,7 @@
 
 import './App.css';
 import React from 'react'
+import RecipeListItem from './components/recipeListItem'
 
 
 class App extends React.Component {
@@ -24,14 +25,17 @@ class App extends React.Component {
 
   submitRecipe = (event) => {
     //const submittedRecipe = { name: recipeName, instructions: recipeInstructions }
+    
     event.preventDefault()
-    this.setState({recipes: [
-        {
-          name: this.state.newRecipeName,
-          instructions :this.state.newRecipeInstructions
-        }
-      ]
-    })
+    let temp = this.state.recipes.slice();
+    temp.push(
+      {
+        name: this.state.newRecipeName,
+        instructions :this.state.newRecipeInstructions
+      }
+    );
+    this.setState({recipes: temp});
+    console.log(this.state.recipes)
   }
 
   render(){
@@ -64,7 +68,7 @@ class App extends React.Component {
       {
         this.state.recipes.length > 0 ?
         <ul>
-          <li>{ this.state.recipes[0].name }</li>
+          {this.state.recipes.map(r => <RecipeListItem recipe={r}/>)}
         </ul> :
         <p>There are no recipes to list.</p>
       }

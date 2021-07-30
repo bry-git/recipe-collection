@@ -33,4 +33,24 @@ describe("Home page", () => {
       })
   })
 
+  it("displays a recipe names under the 'My Recipes' heading after adding a few recipes", () => {
+    const recipeName = ['Tofu Scramble Tacos', 'Cup Noodles'];
+    cy.findByRole('button').click()
+    cy.findByRole('textbox', { name: /Recipe name/i }).type(recipeName[0])
+    cy.findByRole('textbox', { name: /instructions/i }).type("1. heat a skillet on medium with a dollop of coconut oil {enter} 2. warm flour tortillas")
+    cy.findByRole('button').click()
+      .then(() => {
+        expect(cy.findByRole('listitem', /tofu scramble tacos/i)).toExist();
+      })
+
+
+    cy.findByRole('button').click()
+    cy.findByRole('textbox', { name: /Recipe name/i }).type(recipeName[0])
+    cy.findByRole('textbox', { name: /instructions/i }).type("1. Add Water up to fill level {enter} 2. Heat up in microwave for two minutes")
+
+    return cy.findByRole('button').click()
+      .then(() => {
+        expect(cy.findByRole('listitem', /cup noodles/i)).toExist();
+      })
+  })
 })
