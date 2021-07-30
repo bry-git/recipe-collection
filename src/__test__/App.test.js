@@ -22,6 +22,16 @@ describe('recipe collection', () => {
     expect(screen.getByLabelText("Instructions:")).toBeInTheDocument();
   });
 
+  it('typing in the recipe name makes the recipe name appear in the input', async () => {
+    render(<App />);
+  
+    const recipeName = 'No pockets';
+    userEvent.click(screen.getByText("Add Recipe"));
+    await userEvent.type(screen.getByLabelText('Recipe name:'), recipeName);
+  
+    expect(screen.getByLabelText('Recipe name:').value).toEqual(recipeName);
+  })
+
  
   it('renders the Recipe list', () => {
 
