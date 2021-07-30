@@ -58,8 +58,8 @@ const setup = () => {
 
   test('recipe name from state appears in an unordered list', async () => {
     const {instructionsInput, nameInput, submitButton} = setup();
-    const recipeName = "Lean Pockets"
-    const recipeInstructions = "place in toaster oven on 350 for 45 minutes"
+    const recipeName = [ "Lean Pockets" ]
+    const recipeInstructions = [ "place in toaster oven on 350 for 45 minutes" ]
   
     await userEvent.type(instructionsInput, recipeInstructions)
     await userEvent.type(nameInput, recipeName)

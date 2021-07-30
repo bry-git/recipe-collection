@@ -1,5 +1,6 @@
 describe("Home page", () => {
   beforeEach(() => {
+    cy.reload()
     cy.visit('/')
   })
   it("header contains recipe heading with a message that there are no recipes", () => {
@@ -34,23 +35,27 @@ describe("Home page", () => {
   })
 
   it("displays a recipe names under the 'My Recipes' heading after adding a few recipes", () => {
+    //setup
     const recipeName = ['Tofu Scramble Tacos', 'Cup Noodles'];
     cy.findByRole('button').click()
     cy.findByRole('textbox', { name: /Recipe name/i }).type(recipeName[0])
+    cy.findByRole('textbox', { name: /instructions/i }).clear()
     cy.findByRole('textbox', { name: /instructions/i }).type("1. heat a skillet on medium with a dollop of coconut oil {enter} 2. warm flour tortillas")
+    return cy.findByRole('button').click().then(() => {
+
+    //assert 1st item
+    expect(cy.findByRole('listitem', /tofu scramble tacos/i)).toExist() 
+
+    //setup 2
     cy.findByRole('button').click()
-      .then(() => {
-        expect(cy.findByRole('listitem', /tofu scramble tacos/i)).toExist();
-      })
-
-
+    cy.findByRole('textbox', { name: /Recipe name/i }).clear()
+    cy.findByRole('textbox', { name: /Recipe name/i }).type(recipeName[1])
+    cy.findByRole('textbox', { name: /instructions/i }).clear()
+    cy.findByRole('textbox', { name: /instructions/i }).type("1. Put water up to level  {enter} 2. Warm up 2 mins in microwave")
     cy.findByRole('button').click()
-    cy.findByRole('textbox', { name: /Recipe name/i }).type(recipeName[0])
-    cy.findByRole('textbox', { name: /instructions/i }).type("1. Add Water up to fill level {enter} 2. Heat up in microwave for two minutes")
-
-    return cy.findByRole('button').click()
-      .then(() => {
-        expect(cy.findByRole('listitem', /cup noodles/i)).toExist();
-      })
+    
+    //assert 2nd item
+    expect(cy.findAllByRole('listitem', /cup noodles/i)).toExist() 
+    })
   })
 })
