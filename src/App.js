@@ -35,7 +35,6 @@ class App extends React.Component {
       }
     );
     this.setState({recipes: temp});
-    console.log(this.state.recipes)
   }
 
   render(){
@@ -68,7 +67,7 @@ class App extends React.Component {
       {
         this.state.recipes.length > 0 ?
         <ul>
-          {this.state.recipes.map(r => <RecipeListItem recipe={r}/>)}
+          {this.state.recipes.map((r, index )=> <RecipeListItem recipe={r}  key={index} />)}
         </ul> :
         <p>There are no recipes to list.</p>
       }

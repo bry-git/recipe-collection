@@ -66,19 +66,7 @@ const setup = () => {
     userEvent.click(submitButton);
   
     expect(screen.getByRole('listitem')).toBeInTheDocument();
-    expect(screen.getByText(recipeName)).toBeInTheDocument();
-  })
- 
-  it('renders the Recipe list', () => {
-
-  })
-
-  it('has an add recipe function that adds recipe to list', () => {
-
-  })
-
-  it('an added recipe can have details', () => {
-
+    expect(screen.getByText(/recipe name/i)).toBeInTheDocument();
   })
 
 
